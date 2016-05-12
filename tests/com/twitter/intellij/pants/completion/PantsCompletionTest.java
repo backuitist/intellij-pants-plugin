@@ -95,4 +95,10 @@ public class PantsCompletionTest extends PantsCompletionTestBase {
     configure("foo");
     doCompletionTest('\n');
   }
+
+  public void testTargetPath9() throws Throwable {
+    myFixture.addFileToProject("foo/bar/baz/BUILD", "jar_library(name='bar')\njar_library(name='baz')");
+    configure("foo");
+    doCompletionTest('\t');
+  }
 }

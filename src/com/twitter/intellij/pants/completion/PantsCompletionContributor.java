@@ -7,6 +7,7 @@ import com.intellij.codeInsight.completion.*;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.ProcessingContext;
+import com.jetbrains.python.PyTokenTypes;
 import com.jetbrains.python.psi.PyReferenceExpression;
 import com.twitter.intellij.pants.index.PantsTargetIndex;
 import com.twitter.intellij.pants.util.PantsUtil;
@@ -21,7 +22,7 @@ public class PantsCompletionContributor extends CompletionContributor {
   public PantsCompletionContributor() {
     extend(
       CompletionType.BASIC,
-      psiElement().withParent(PyReferenceExpression.class),
+      psiElement(PyTokenTypes.SINGLE_QUOTED_STRING).withParent(PyReferenceExpression.class),
       new CompletionProvider<CompletionParameters>() {
         @Override
         protected void addCompletions(
