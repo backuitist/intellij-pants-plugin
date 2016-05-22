@@ -13,6 +13,7 @@ junit_tests(
         'com/twitter/intellij/pants/model/*.java',
         'com/twitter/intellij/pants/psi/reference/*.java',
         'com/twitter/intellij/pants/quickfix/*.java',
+        'com/twitter/intellij/pants/refactor/*.java',
         'com/twitter/intellij/pants/resolve/*.java',
         'com/twitter/intellij/pants/service/project/*.java',
         'com/twitter/intellij/pants/service/util/*.java',
