@@ -156,7 +156,7 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
     }
   }
 
-  private void cmd(String... args) throws ExecutionException {
+  private void cmd(String... args) throws ExecutionException, IOException {
     final GeneralCommandLine commandLine = new GeneralCommandLine(args);
     final ProcessOutput cmdOutput = PantsUtil.getCmdOutput(commandLine.withWorkDirectory(getProjectFolder()), null);
     assertTrue("Failed to execute: " + StringUtil.join(args, " "), cmdOutput.getExitCode() == 0);
@@ -172,7 +172,7 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
   }
 
   @NotNull
-  abstract protected File getProjectFolder();
+  abstract protected File getProjectFolder() throws IOException;
 
   @NotNull
   protected List<File> getProjectFoldersToCopy() {
@@ -193,6 +193,10 @@ public abstract class PantsIntegrationTestCase extends ExternalSystemImportingTe
     final List<Module> allModules = Arrays.asList(ModuleManager.getInstance(myProject).getModules());
     myCompilerTester = new CompilerTester(myProject, allModules);
     return myCompilerTester;
+  }
+
+  protected void assertProjectName(String name) {
+    assertEquals(name, myProject.getName());
   }
 
   protected void assertScalaLibrary(String moduleName) throws Exception {

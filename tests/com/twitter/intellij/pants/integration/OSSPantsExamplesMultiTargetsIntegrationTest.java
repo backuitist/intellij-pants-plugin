@@ -9,6 +9,8 @@ public class OSSPantsExamplesMultiTargetsIntegrationTest extends OSSPantsIntegra
   public void testHello() throws Throwable {
     doImport("examples/src/java/org/pantsbuild/example/hello");
 
+    assertProjectName("examples/src/java/org/pantsbuild/example/hello/::");
+
     assertModules(
       "examples_src_resources_org_pantsbuild_example_hello_hello",
       "examples_src_java_org_pantsbuild_example_hello_main_main",

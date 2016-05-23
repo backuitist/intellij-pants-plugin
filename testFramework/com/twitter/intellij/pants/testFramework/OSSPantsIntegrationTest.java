@@ -23,6 +23,7 @@ abstract public class OSSPantsIntegrationTest extends PantsIntegrationTestCase {
   @Override
   protected List<File> getProjectFoldersToCopy() {
     final File testProjects = new File(PantsTestUtils.findTestPath("testData"), "testprojects");
+
     return Collections.singletonList(testProjects);
   }
 
