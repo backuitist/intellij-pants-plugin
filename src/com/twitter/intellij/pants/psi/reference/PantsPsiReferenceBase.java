@@ -7,15 +7,14 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
+import com.intellij.psi.PsiReferenceBase;
 import com.intellij.util.IncorrectOperationException;
 import com.twitter.intellij.pants.util.PantsUtil;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class PantsPsiReferenceBase implements PsiReference {
-  private final PsiElement myElement;
-  private final TextRange myRange;
+public abstract class PantsPsiReferenceBase extends PsiReferenceBase<PsiElement> implements PsiReference {
   private final String myText;
   private final String myRelativePath;
 
@@ -25,20 +24,9 @@ public abstract class PantsPsiReferenceBase implements PsiReference {
     @Nls String text,
     @Nls String relativePath
   ) {
-    myElement = element;
-    myRange = range;
+    super(element, range, false);
     myText = text;
     myRelativePath = relativePath;
-  }
-
-  @Override
-  public PsiElement getElement() {
-    return myElement;
-  }
-
-  @Override
-  public TextRange getRangeInElement() {
-    return myRange;
   }
 
   @Override
@@ -53,17 +41,6 @@ public abstract class PantsPsiReferenceBase implements PsiReference {
 
   public String getRelativePath() {
     return myRelativePath;
-  }
-
-  @Override
-  public boolean isSoft() {
-    return false;
-  }
-
-  @Override
-  public boolean isReferenceTo(PsiElement element) {
-    // todo(@fkorotkov): support it with
-    return false;
   }
 
   @Override
